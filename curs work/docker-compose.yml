@@ -1,0 +1,53 @@
+# Docker Compose для курсовой работы с GPU
+
+version: '3.8'
+
+services:
+  ml-gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./artifacts:/app/artifacts
+      - ./logs:/app/logs
+    command: ["--model", "bert", "--epochs", "3"]
+    stdin_open: true
+    tty: true
+
+  ml-cpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CUDA_VISIBLE_DEVICES=""
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./artifacts:/app/artifacts
+      - ./logs:/app/logs
+    command: ["--model", "tfidf_logreg", "--no-gpu"]
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./:/app
+      - ./notebooks:/app/notebooks
+    ports:
+      - "8888:8888"
+    command: >
+      bash -c "
+        pip install jupyter &&
+        jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+      "

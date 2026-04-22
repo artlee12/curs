@@ -1,0 +1,49 @@
+# Базовая конфигурация проекта
+project:
+  name: "news-classification"
+  version: "1.0.0"
+  seed: 42
+
+# Пути к данным
+data:
+  raw_path: "./data/raw"
+  processed_path: "./data/processed"
+  embeddings_path: "./data/embeddings"
+  train_file: "train.csv"
+  test_file: "test.csv"
+
+# Предобработка
+preprocessing:
+  strategy: "classic"  # или "bert"
+  lowercase: true
+  remove_stopwords: true
+  lemmatize: true
+  max_length: 512
+
+# Разделение данных
+split:
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  stratify: true
+  random_state: 42
+
+# Пути для артефактов
+artifacts:
+  metrics_path: "./artifacts/metrics"
+  predictions_path: "./artifacts/predictions"
+  visualizations_path: "./artifacts/visualizations"
+  confusion_matrices_path: "./artifacts/confusion_matrices"
+
+# Пути для моделей
+models:
+  checkpoints_path: "./models/checkpoints"
+  serialized_path: "./models/serialized"
+  onnx_path: "./models/onnx"
+
+# Логирование
+logging:
+  level: "INFO"
+  log_dir: "./logs"
+  use_mlflow: true
+  mlflow_tracking_uri: "./logs/mlruns"
