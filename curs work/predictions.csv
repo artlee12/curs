@@ -1,0 +1,5 @@
+text,predicted_class,probability_class_0,probability_class_1,probability_class_2,probability_class_3
+Apple announces new iPhone 18 with revolutionary AI features,Sci/Tech,0.0592580419976793,0.8418210254975812,0.022930000023332966,0.0759909324814065
+Real Madrid wins the Champions League final against Manchester City after a dramatic penalty shootout,Sports,0.0018839682383316539,0.002957231362378815,0.9880054797045335,0.00715332069475607
+Stocks hit record highs as inflation slows and federal reserve signals rate cuts,Business,0.9155648897673665,0.008991674099094564,0.011374637315147849,0.06406879881839088
+UN council agrees to new historical peace treaty plan between nations after weeks of debate,World,0.013371773553175155,0.06549598096497651,0.012719255762733058,0.9084129897191152

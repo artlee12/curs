@@ -1,0 +1,43 @@
+# Конфигурация для обучения BERT
+project:
+  name: "news-classification"
+  version: "1.0.0"
+  seed: 42
+
+data:
+  raw_path: "./data/raw"
+  processed_path: "./data/processed"
+  embeddings_path: "./data/embeddings"
+  train_file: "train.csv"
+  test_file: "test.csv"
+
+preprocessing:
+  strategy: "bert"
+  lowercase: false
+  remove_stopwords: false
+  lemmatize: false
+  max_length: 128
+
+split:
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  stratify: true
+  random_state: 42
+
+artifacts:
+  metrics_path: "./artifacts/metrics"
+  predictions_path: "./artifacts/predictions"
+  visualizations_path: "./artifacts/visualizations"
+  confusion_matrices_path: "./artifacts/confusion_matrices"
+
+models:
+  checkpoints_path: "./models/checkpoints"
+  serialized_path: "./models/serialized"
+  onnx_path: "./models/onnx"
+
+logging:
+  level: "INFO"
+  log_dir: "./logs"
+  use_mlflow: true
+  mlflow_tracking_uri: "./logs/mlruns"
